@@ -1,0 +1,56 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="160" y1="40" x2="1000" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#131a30" />
+      <stop offset="1" stop-color="#090d1a" />
+    </linearGradient>
+    <linearGradient id="panel" x1="400" y1="140" x2="840" y2="730" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#232c50" />
+      <stop offset="1" stop-color="#11172c" />
+    </linearGradient>
+    <linearGradient id="gold" x1="520" y1="80" x2="860" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffd86f" />
+      <stop offset="1" stop-color="#ff9f40" />
+    </linearGradient>
+    <linearGradient id="cyan" x1="330" y1="230" x2="910" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#69d8ff" stop-opacity="0.86" />
+      <stop offset="1" stop-color="#69d8ff" stop-opacity="0.05" />
+    </linearGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="14" />
+    </filter>
+  </defs>
+  <rect width="1200" height="900" rx="34" fill="url(#bg)" />
+  <rect x="84" y="74" width="1032" height="752" rx="26" fill="#0a1020" stroke="rgba(255,255,255,0.08)" />
+  <path d="M84 210H1116" stroke="rgba(255,255,255,0.08)" />
+  <path d="M84 694H1116" stroke="rgba(255,255,255,0.08)" />
+  <path d="M188 74V826" stroke="rgba(255,255,255,0.05)" />
+  <path d="M1012 74V826" stroke="rgba(255,255,255,0.05)" />
+  <ellipse cx="342" cy="232" rx="186" ry="56" fill="#69d8ff" fill-opacity="0.12" filter="url(#blur)" />
+  <ellipse cx="842" cy="658" rx="170" ry="58" fill="#ff5f6d" fill-opacity="0.16" filter="url(#blur)" />
+  <rect x="240" y="164" width="720" height="486" rx="28" fill="url(#panel)" stroke="rgba(255,255,255,0.12)" />
+  <rect x="278" y="202" width="208" height="370" rx="22" fill="#101829" stroke="rgba(255,255,255,0.08)" />
+  <rect x="516" y="202" width="410" height="152" rx="22" fill="#121a2c" stroke="rgba(255,255,255,0.08)" />
+  <rect x="516" y="376" width="410" height="196" rx="22" fill="#0e1528" stroke="rgba(255,255,255,0.08)" />
+  <path d="M560 244H882" stroke="url(#gold)" stroke-width="8" stroke-linecap="round" />
+  <path d="M560 278H818" stroke="rgba(255,255,255,0.22)" stroke-width="6" stroke-linecap="round" />
+  <path d="M560 314H732" stroke="rgba(255,255,255,0.15)" stroke-width="6" stroke-linecap="round" />
+  <rect x="314" y="238" width="100" height="34" rx="17" fill="#69d8ff" fill-opacity="0.16" stroke="rgba(105,216,255,0.42)" />
+  <rect x="314" y="290" width="100" height="34" rx="17" fill="#ff5f6d" fill-opacity="0.16" stroke="rgba(255,95,109,0.42)" />
+  <rect x="314" y="342" width="100" height="34" rx="17" fill="#f8c44f" fill-opacity="0.16" stroke="rgba(248,196,79,0.42)" />
+  <rect x="314" y="394" width="100" height="34" rx="17" fill="#67f29b" fill-opacity="0.16" stroke="rgba(103,242,155,0.38)" />
+  <rect x="314" y="446" width="100" height="34" rx="17" fill="#69d8ff" fill-opacity="0.16" stroke="rgba(105,216,255,0.42)" />
+  <circle cx="388" cy="604" r="52" fill="#f8c44f" fill-opacity="0.12" stroke="rgba(248,196,79,0.32)" />
+  <circle cx="388" cy="604" r="16" fill="#f8c44f" />
+  <rect x="560" y="420" width="278" height="20" rx="10" fill="rgba(255,255,255,0.18)" />
+  <rect x="560" y="460" width="344" height="20" rx="10" fill="rgba(255,255,255,0.14)" />
+  <rect x="560" y="500" width="228" height="20" rx="10" fill="rgba(255,255,255,0.1)" />
+  <rect x="560" y="540" width="314" height="20" rx="10" fill="rgba(255,255,255,0.08)" />
+  <path d="M248 716C392 652 474 618 600 618C726 618 808 652 952 716" stroke="url(#cyan)" stroke-width="24" stroke-linecap="round" />
+  <circle cx="248" cy="716" r="14" fill="#69d8ff" />
+  <circle cx="600" cy="618" r="12" fill="#ff5f6d" />
+  <circle cx="952" cy="716" r="14" fill="#f8c44f" />
+  <path d="M264 722C390 668 472 642 600 642C728 642 810 668 936 722" stroke="rgba(255,255,255,0.22)" stroke-width="2" stroke-dasharray="6 10" />
+  <text x="278" y="168" fill="#f6f1e7" font-family="IBM Plex Mono, monospace" font-size="28" font-weight="600" letter-spacing="3">BOOGERTIME / LIVE SIGNAL</text>
+  <text x="278" y="612" fill="#b0b8cb" font-family="IBM Plex Mono, monospace" font-size="20" font-weight="500" letter-spacing="2">CADDY FRONTED / STATIC BUILD / OPEN ROUTES</text>
+</svg>
