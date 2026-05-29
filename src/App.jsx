@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import packageJson from '../package.json';
 import heroArt from './assets/hero-art.svg';
 
 const spreadsheetUrl = encodeURI('/Introduction to Da World - Deployment Master.xlsx');
+const dnsCsvUrl = encodeURI('/DOMAINS-boogertime.csv');
 
 const domains = [
   {
@@ -41,6 +43,57 @@ const dashboardCommandLabels = [
   'Test Nginx Config:',
   'Reload Nginx:',
   'Setup SSL:',
+];
+
+const repoInventory = [
+  {
+    title: 'Core source',
+    blurb: 'The React app and styling that drive the page and dashboard.',
+    items: [
+      { path: 'src/App.jsx', detail: 'Main UI, domain cards, and dashboard logic.' },
+      { path: 'src/styles.css', detail: 'All layout, color, typography, and panels.' },
+      { path: 'src/main.jsx', detail: 'React entry point.' },
+      { path: 'src/assets/hero-art.svg', detail: 'Hero illustration used in the header.' },
+    ],
+  },
+  {
+    title: 'Live data',
+    blurb: 'Files the dashboard can read directly in the browser.',
+    items: [
+      { path: 'public/Introduction to Da World - Deployment Master.xlsx', detail: 'Deployment workbook with server, port, and agent notes.' },
+      { path: 'public/DOMAINS-boogertime.csv', detail: 'DNS record mirror for live browser access.' },
+      { path: 'DOMAINS-boogertime.csv', detail: 'Repo copy of the DNS records.' },
+    ],
+  },
+  {
+    title: 'Runtime and deploy',
+    blurb: 'How the site is built, served, and proxied on the VPS.',
+    items: [
+      { path: 'server.js', detail: 'Static Node server with SPA fallback and /healthz.' },
+      { path: 'setup-nginx.sh', detail: 'Nginx bootstrap script for the .xyz hosts.' },
+      { path: 'landing.sh', detail: 'Legacy static page generator for the domains.' },
+      { path: 'vite.config.js', detail: 'Vite build config.' },
+      { path: 'index.html', detail: 'Vite entry document.' },
+    ],
+  },
+  {
+    title: 'Project controls',
+    blurb: 'Repo metadata and guard rails.',
+    items: [
+      { path: 'package.json', detail: 'Scripts, dependencies, and project metadata.' },
+      { path: 'package-lock.json', detail: 'Pinned dependency tree.' },
+      { path: 'README.md', detail: 'Project overview and workflow notes.' },
+      { path: '.gitignore', detail: 'Local junk, builds, and secret hygiene.' },
+    ],
+  },
+  {
+    title: 'Generated',
+    blurb: 'Outputs created by builds or installs, not source of truth.',
+    items: [
+      { path: 'dist/', detail: 'Built production output.' },
+      { path: 'node_modules/', detail: 'Installed dependency cache.' },
+    ],
+  },
 ];
 
 function clean(value) {
@@ -84,6 +137,124 @@ function extractPorts(rows) {
       exposure: clean(row[5]),
     }))
     .filter((entry) => entry.port || entry.service || entry.exposure);
+}
+
+function parseCsvLine(line) {
+  const cells = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i += 1) {
+    const char = line[i];
+
+    if (inQuotes) {
+      if (char === '"' && line[i + 1] === '"') {
+        current += '"';
+        i += 1;
+      } else if (char === '"') {
+        inQuotes = false;
+      } else {
+        current += char;
+      }
+      continue;
+    }
+
+    if (char === ',') {
+      cells.push(current);
+      current = '';
+      continue;
+    }
+
+    if (char === '"') {
+      inQuotes = true;
+      continue;
+    }
+
+    current += char;
+  }
+
+  cells.push(current);
+  return cells;
+}
+
+function parseCsv(text) {
+  return text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map(parseCsvLine);
+}
+
+function useDnsDashboard() {
+  const [state, setState] = useState({
+    loading: true,
+    error: '',
+    updatedAt: '',
+    header: [],
+    records: [],
+  });
+
+  useEffect(() => {
+    let active = true;
+
+    const load = async () => {
+      try {
+        const response = await fetch(dnsCsvUrl, { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`Failed to fetch DNS CSV (${response.status})`);
+        }
+
+        const text = await response.text();
+        const rows = parseCsv(text);
+        const [header = [], ...body] = rows;
+        const seen = new Set();
+        const records = [];
+
+        for (const row of body) {
+          const record = {
+            host: clean(row[0]),
+            type: clean(row[1]),
+            value: clean(row[2]),
+            ttl: clean(row[3]),
+          };
+          const key = [record.host, record.type, record.value, record.ttl].join('|');
+          if (!record.host || seen.has(key)) {
+            continue;
+          }
+          seen.add(key);
+          records.push(record);
+        }
+
+        if (active) {
+          setState({
+            loading: false,
+            error: '',
+            updatedAt: new Date().toISOString(),
+            header,
+            records,
+          });
+        }
+      } catch (error) {
+        if (active) {
+          setState((current) => ({
+            ...current,
+            loading: false,
+            error: error instanceof Error ? error.message : 'Failed to load DNS CSV',
+          }));
+        }
+      }
+    };
+
+    load();
+    const interval = window.setInterval(load, 15000);
+
+    return () => {
+      active = false;
+      window.clearInterval(interval);
+    };
+  }, []);
+
+  return state;
 }
 
 function useSpreadsheetDashboard() {
