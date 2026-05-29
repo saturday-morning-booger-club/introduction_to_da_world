@@ -1,58 +1,49 @@
-# 🎬 Welcome to the Saturday Morning Booger Club 🎮
+# BoogerTimeClub
 
-> **Hello. Welcome to the club.** We ARE BoogerTimeClub. Saturday Morning Cartoons.
+BoogerTimeClub is the brand information page for `boogertime.xyz`.
 
-This is the REPO for me to INTRODUCE myself AND my BRAND to the WORLD.
+This repo contains a small React/Vite site, a static Node server for serving the built app, and an nginx setup script for the host-level `.xyz` deployment.
 
----
+## Domains
 
-## 🌟 What's This All About?
+- `boogertime.xyz` - primary brand page
+- `www.boogertime.xyz` - canonical alias
+- `boogertime.shop` - legacy compatibility name
+- `boogertime.club` - reserved brand identity
 
-Ever get that feeling when you're scrolling through life and something just *hits different*? That's what BoogerTimeClub is. No cap, just real energy.
+## Route Map
 
-We're here because Saturday mornings meant something. They meant freedom, laughter, and that pure unfiltered joy before the week kicked in. We're bringing that vibe back—but make it *now*. Make it yours. Make it ours.
+The page presents a small route map for the brand:
 
-This isn't some corporate thing. This is me. This is us. This is what happens when you decide to stop playing small and start making shit that actually *matters*.
+- `/` - landing page
+- `/api` - service lane
+- `/dash` - operator view
+- `/booger` - internal access
 
----
+The Node server also exposes:
 
-## 🎨 Our Vibe
+- `/healthz` - health check that returns `ok`
 
-- 💯 **Authentic AF** - No filters, no BS, just real talk
-- 🚀 **Unapologetic** - Doing what we love, loud and proud
-- 🤝 **Real Community** - People who get it, vibe with it, build with it
-- ✨ **Always Evolving** - Because we're just getting started
+## Local Workflow
 
----
-
-## 🎯 What's Inside
-
-- 🎬 Content that makes you feel something
-- 💡 Ideas that hit different
-- 🌊 A whole movement, honestly
-- 🔥 Whatever comes next
-
----
-
-## 🚀 Join In
-
-You reading this? You're already part of it.
-
-```
-git clone https://github.com/saturday-morning-booger-club/introduction_to_da_world.git
-cd introduction_to_da_world
+```bash
+npm install
+npm run dev
 ```
 
----
+For a production-style local run:
 
-## 💬 Real Talk
+```bash
+npm run build
+npm start
+```
 
-This is where I'm building something. Something that matters to me. Something *real*.
+## Deployment Notes
 
-If you're here, you see it too. Let's go.
+- `src/App.jsx` is the source of truth for the brand page content and domain labels.
+- `server.js` serves the built `dist/` output and falls back to `index.html` for SPA routes.
+- `setup-nginx.sh` configures the `.xyz` hostnames for nginx deployment.
 
----
+## Project Voice
 
-**Made with 💜 and Saturday Morning Energy**
-
-*BoogerTimeClub - Just Us, Just Now* 🎪
+The copy is intentionally direct and brand-forward. It is a brand information page first, not a product app.

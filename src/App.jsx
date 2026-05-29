@@ -2,19 +2,19 @@ import heroArt from './assets/hero-art.svg';
 
 const domains = [
   {
-    host: 'boogertime.shop',
+    host: 'boogertime.xyz',
     badge: 'primary',
-    note: 'Main stage. Cleanest entry point for the brand.',
+    note: 'Main brand information page and primary entry point.',
   },
   {
-    host: 'www.boogertime.shop',
+    host: 'www.boogertime.xyz',
     badge: 'mirror',
     note: 'Canonical web alias for public traffic.',
   },
   {
-    host: 'boogertime.xyz',
+    host: 'boogertime.shop',
     badge: 'legacy',
-    note: 'Still live in DNS for compatibility and redirects.',
+    note: 'Legacy name kept around for compatibility and redirects.',
   },
   {
     host: 'boogertime.club',
@@ -66,14 +66,14 @@ export default function App() {
           </div>
           <div className="topbar__status">
             <StatusPill label="LIVE" tone="live" />
-            <span>served through Caddy on port 3000</span>
+            <span>served by the Node server on port 3000</span>
           </div>
         </header>
 
         <div className="hero__grid">
           <div className="hero__copy">
             <p className="lede">
-              A retro kinetic front door for the club domains. Fast to load, hard to ignore, and
+              A retro kinetic brand information page for the domains. Fast to load, hard to ignore, and
               built to sit cleanly behind the current server setup.
             </p>
 
@@ -93,7 +93,7 @@ export default function App() {
               </div>
               <div>
                 <dt>API lane</dt>
-                <dd>localhost:8000</dd>
+                <dd>reserved route</dd>
               </div>
               <div>
                 <dt>DNS</dt>
@@ -149,7 +149,7 @@ export default function App() {
           <h2>Ready for a live site, a redirect, or a bigger build later.</h2>
         </div>
         <p>
-          The page is static at heart, but it is packaged to sit behind the current Caddy upstream
+          The page is static at heart, but it is packaged to sit behind the current Node server
           without extra moving parts.
         </p>
       </section>
