@@ -4,4 +4,11 @@ dist/
 coverage/
 npm-debug.log*
 *.log
-
+.env
+.env.*
+*.local
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
