@@ -10,7 +10,7 @@ This is the REPO for me to INTRODUCE myself AND my BRAND to the WORLD.
 
 Ever get that feeling when you're scrolling through life and something just *hits different*? That's what BoogerTimeClub is. No cap, just real energy.
 
-We're here because Saturday mornings meant something. They meant freedom, laughter, and that pure unfiltered joy before the week kicked in. We're bringing that vibe back—but make it *now*. Make it *ours*. Make it **raw**.
+We're here because Saturday mornings meant something. They meant freedom, laughter, and that pure unfiltered joy before the week kicked in. We're bringing that vibe back—but make it *now*. Make it yours. Make it ours.
 
 This isn't some corporate thing. This is me. This is us. This is what happens when you decide to stop playing small and start making shit that actually *matters*.
 
